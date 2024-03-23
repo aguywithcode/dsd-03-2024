@@ -5,6 +5,7 @@ import logger from 'morgan';
 
 import indexRouter from './routes/index.js';
 import usersRouter from './routes/users.js';
+import ingredientsRouter from "./routes/ingredients.js"
 import {fileURLToPath} from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -20,5 +21,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/ingredients', ingredientsRouter)
 
 export default app;
