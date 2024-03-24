@@ -14,7 +14,6 @@ This project aims to create a comprehensive tool for managing groceries, integra
 - Node.js 
 - npm (or yarn)
 
-
 ## Roadmap
 - Week 1-2: Project setup and MVP definition.
 - Week 3-4: Core feature development.
@@ -32,9 +31,6 @@ Contributions are what make the open-source community such an amazing place to l
 
 ## License
 Distributed under the MIT License. See `LICENSE` for more information.
-
-## Contact
-Your Name - email@example.com
 
 ## Acknowledgements
 - [Figma Design Files]()
@@ -55,5 +51,4 @@ For internal use:
 - [ ] Initial API endpoints for recipes and meal plans.
 
 ### Testing
-- We are using [Postman/Insomnia/Other] for testing REST APIs. Instructions for API testing are available [here/link].
-
+- We are using [Postman/Insomnia] for testing REST APIs. 
