@@ -5,12 +5,15 @@
   "type": "module",
   "scripts": {
     "start": "node ./bin/www",
+    "test controller": "mocha './test/controllerTests/*.test.js",
+    "test model": "mocha './test/modelTests/*.test.js'",
     "test": "mocha './test/**/*.test.js'"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "express-session": "^1.18.0",
     "mongoose": "^8.2.3",
     "morgan": "~1.9.1"
   },

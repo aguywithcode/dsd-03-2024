@@ -1,4 +1,4 @@
-import Mockup from "./helper/modelID.mockup.js";
+import Mockup from "./helper/schema.mockup.js";
 import RouteID from "../../model/util/RouteID.js";
 import { expect } from "chai";
 

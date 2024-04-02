@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 //Subject to change.
 const FridgeSchema = new Schema({
-    _id: {type: String, required: true, unique: true},
+    route_id: {type: String, required: true, unique: true},
     owner_id: {type: Schema.Types.ObjectId, ref: "User", required: true},
     ingredients: [{type: Schema.Types.ObjectId, ref: "Ingredient"}]
 });
