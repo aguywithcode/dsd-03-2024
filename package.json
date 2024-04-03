@@ -2,14 +2,24 @@
   "name": "express-template",
   "version": "0.0.0",
   "private": true,
-  "type":"module",
+  "type": "module",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test controller": "mocha './test/controllerTests/*.test.js",
+    "test model": "mocha './test/modelTests/*.test.js'",
+    "test": "mocha './test/**/*.test.js'"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "express-session": "^1.18.0",
+    "mongoose": "^8.2.3",
     "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "chai": "^5.1.0",
+    "dotenv": "^16.4.5",
+    "mocha": "^10.4.0"
   }
 }
