@@ -1,6 +1,12 @@
+/**@module model/RouteID */
 import mongoose from "mongoose";
 
-//Creates short and simple IDs for use in URL endpoints while guaranteeing uniqueness.
+/** Creates short and simple IDs for use in URL endpoints while guaranteeing uniqueness.
+ * @author Tyler Del Rosario
+ * @param length {number} Defines the length of the routeID to generate.
+ * @param model {Schema} Enables routeID to check for duplicates against different types
+ * of documents.
+*/
 const RouteID = async function(length, model) {
     const characterSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     + "123456789";

@@ -1,6 +1,10 @@
+/**@module model/ingredient */
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
+/**Validator that checks if nutrient numbers are integers
+* @param {number} fieldName
+*/
 const checkInt = function(fieldName) {
     return {
         validator: (value) => Number.isInteger(value),
@@ -8,8 +12,22 @@ const checkInt = function(fieldName) {
     }
 }
 
+/**Schema object for the Ingredient model.
+ * @author Tyler Del Rosario
+ * @property name {string} Ingredient Name
+ * @property image_url {string} This is unlikely to be implemented.
+ * @property calories {string}
+ * @property vitamin_A {string}
+ * @property vitamin_B {string}
+ * @property vitamin_C {string}
+ * @property cholesterol {string}
+ * @property carbohydrates {string}
+ * @property protein {string}
+ * @property TBD {string} More nutrients will be added.
+ */
 const IngredientSchema = new Schema({
     name: {type: String, required: true},
+
     image_url: {type: String},
     //fridge_id: {type: Schema.Types.ObjectId, ref:"Fridge", required: true},
     

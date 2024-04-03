@@ -19,7 +19,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
     secret: "testSign", //Used to sign sessionIDs. Will change later. -Tyler
@@ -30,7 +30,7 @@ app.use(session({
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/ingredients', ingredientsRouter);
+app.use('/ingredient', ingredientsRouter);
 app.use('/auth/google', googleRouter);
 
 export default app;
