@@ -20,7 +20,6 @@ async function Nutrient() {
             let obj = {};
             let name = await nutrient_names.search(nutrientArr[2]).catch((err) => {throw err;});
 
-
             obj.fdc_id = Number(nutrientArr[1]);
             obj.nutrient_id = Number(nutrientArr[2]);
             if (name != false) {

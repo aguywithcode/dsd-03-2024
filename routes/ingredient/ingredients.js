@@ -1,4 +1,5 @@
 import express from 'express';
+//import controller from '../controller/IngredientController.js';
 const router = express.Router();
 
 // Sample ingredient data
@@ -13,7 +14,7 @@ let ingredients = [
     },
     {
         id: 2,
-        name: "Milk",
+        name: "If you can see this, then react is successfully connecting to the express server.",
         calories: 42,
         protein: 3.4,
         carbs: 4.7,
@@ -39,7 +40,7 @@ router.get('/:id', (req, res) => {
 });
 
 // Endpoint to create a new ingredient
-router.post('/ingredients', (req, res) => {
+router.post('/', (req, res) => {
     const newIngredient = req.body;
     newIngredient.id = ingredients.length + 1; // Assign a new ID
     ingredients.push(newIngredient);
