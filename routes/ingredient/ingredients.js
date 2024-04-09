@@ -1,5 +1,12 @@
+/**@module controller/google 
+* @requires module:model/ingredient
+*/
 import express from 'express';
-//import controller from '../controller/IngredientController.js';
+import 'dotenv/config';
+import mongoose from 'mongoose';
+import Ingredient from '../../model/ingredient.js';
+import create_ingredient from '../../controller/IngredientController.js';
+
 const router = express.Router();
 
 // Sample ingredient data
@@ -23,10 +30,14 @@ let ingredients = [
     // Add more ingredients as needed
 ];
 
+
+
 // Endpoint to get all ingredients
-router.get('/', (req, res) => {
-    res.json(ingredients);
-});
+router.get('/', (req, res) =>{
+ res.json(ingredients);
+}
+   
+);
 
 // Endpoint to get a single ingredient by ID
 router.get('/:id', (req, res) => {
@@ -40,11 +51,10 @@ router.get('/:id', (req, res) => {
 });
 
 // Endpoint to create a new ingredient
-router.post('/', (req, res) => {
-    const newIngredient = req.body;
-    newIngredient.id = ingredients.length + 1; // Assign a new ID
-    ingredients.push(newIngredient);
-    res.status(201).json(newIngredient);
+router.post('/', (req,res)=>{
+    const response =  create_ingredient(req.body);
+    console.log("response",response);
+    res.json(response);
 });
 
 // Endpoint to update an existing ingredient by ID

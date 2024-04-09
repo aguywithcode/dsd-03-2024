@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "concurrently \"node ./bin/www\" \"cd ./view && npm start\"",
+    "start": "node ./bin/www",
     "document": "jsdoc -r -c conf.json ./",
     "test controller": "mocha './test/controllerTests/*.test.js",
     "test model": "mocha './test/modelTests/*.test.js'",
@@ -14,6 +14,7 @@
   "dependencies": {
     "@tailwindcss/forms": "^0.5.7",
     "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "express-session": "^1.18.0",

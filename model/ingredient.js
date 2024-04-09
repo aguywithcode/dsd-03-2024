@@ -45,5 +45,5 @@ const IngredientSchema = new Schema({
         total_monosaturated_fats: {type: Number, required: true, validate: checkInt("total_mono_fats")}
     }
 });
-
-export default mongoose.model("Ingredient", IngredientSchema);
+const Ingredient = mongoose.model("Ingredient", IngredientSchema);
+export default Ingredient;

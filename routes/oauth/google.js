@@ -44,6 +44,7 @@ router.get("/", (req, res) => {
  */
 router.get("/callback", async (req, res, next) => {
     const code = req.query.code;
+    console.log("code",code);
     
     if (code != undefined) {
         await token_client(code).then((response) => {

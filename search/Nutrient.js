@@ -100,8 +100,4 @@ async function Nutrient() {
 }
 
 const nutrients = await Nutrient();
-//console.log(nutrients.nutrient_list);
-//console.dir(await nutrients.searchByFDC(2514747), {'maxArrayLength': null});
-
-// console.log(await nutrients.searchByFDC(323294));
 export default nutrients;
