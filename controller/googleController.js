@@ -56,3 +56,4 @@ const create_google_user = async function(req, res){
 }
 
 export default create_google_user;
+// "proxy": "http://localhost:3001",

@@ -1,41 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
-import React, {useState, useEffect} from 'react';
+import "./App.css";
+import React from "react";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
-
+import Dashboard from "./Pages/Dashboard";
+import Pantry from "./Pages/Pantry";
+import Recipes from "./Pages/Recipies";
+import Navbar from "./Pages/Components/Navbar";
+import Sidebar from "./Pages/Components/Sidebar";
 
 function App() {
-  //TEMPORARY FETCHING AND HOOKS
-  const url = "/ingredient/2";
-  const [data, setData] = useState([]);
-
-  async function fetchData(){
-    return fetch(url)
-      .then( async (response) => {return await response.json()})
-      .then((d) => {setData(d)});
-  }
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          {data.name}
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="flex flex-col h-screen">
+        <Navbar />
+        <div className="flex flex-1 overflow-hidden">
+          <Sidebar />
+          <main className="p-4 overflow-auto w-full">
+            <Routes>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/pantry" element={<Pantry />} />
+              <Route path="/recipes" element={<Recipes />} />
+            </Routes>
+          </main>
+        </div>
+      </div>
+    </Router>
   );
 }
 

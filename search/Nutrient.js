@@ -1,6 +1,7 @@
 import fs from 'fs';
 import readline from 'readline';
-import nutrient_names from './conversions/NutrientConversion.js';
+//import nutrient_names from './conversions/NutrientConversion.js';
+import nutrient_names from './conversions/NutrientConversion';
 
 async function Nutrient() {
     //Initialize nutrient list from relevant excel file.
@@ -81,7 +82,10 @@ async function Nutrient() {
 
 const nutrients = await Nutrient();
 
+
 console.dir(await nutrients.searchByFDC(323294), {'maxArrayLength': null});
 
-// console.log(await nutrients.searchByFDC(323294));
-// export default Nutrient();
+//  console.log(await nutrients.searchByFDC(323294));
+//  export default Nutrient();
+const list = nutrients.nutrient_list;
+export default nutrients;

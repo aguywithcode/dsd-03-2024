@@ -39,5 +39,5 @@ const IngredientSchema = new Schema({
     carbohydrates: {type: Number, required: true, validate: checkInt("carbohydrates")},
     protein: {type: Number, required: true, validate: checkInt("protein")}
 });
-
-export default mongoose.model("Ingredient", IngredientSchema);
+const Ingredient = mongoose.model("Ingredient", IngredientSchema);
+export default Ingredient;
