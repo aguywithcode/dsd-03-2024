@@ -1,54 +1,37 @@
-import fs from 'fs';
-import readline from 'readline';
+import foundation_food from './foundation_food.js';
+import Ingredient from '../model/ingredient.js';
+import mongoose from 'mongoose';
+import 'dotenv/config';
 
-async function lineReader() {
-    const foodFile = fs.createReadStream("./FoodCSV/foundation_food.csv");
-    const set = {
-
-    };
-
-    const refObj = {
-
-    };
-
-    const reader = readline.createInterface({
-        input: foodFile,
-        crlfDelay: Infinity
+(async function(){    
+    const connected = new Promise(async (resolve, reject) => {
+        return await mongoose.connect(process.env.DB_URL).then(() => {
+            resolve();
+        }).catch((error) => {
+            reject(error);
+        });
     });
 
-    for await (const line of reader) {
-        const arr = line.split(";");
-        const ID = arr[0];
-        const description = arr[2];
+    await connected.then(() => {
+        const ingredient_list = foundation_food.map((obj) => {
+            return new Ingredient(obj);
+        });
+        
+        return ingredient_list;
+    }).then(async (list) => {
 
-        if (set[description] === undefined) {
-            set[description] = true;
-            
-            const descArr = description.split(", ");
-
-            for (const adjective of descArr) {
-                let split = adjective.toLowerCase()
-                    .replace(/[^a-zA-Z0-9"-"%"]/g, " ").split(" ");
-
-                for (const word of split) {
-                    if (refObj[word] === undefined) {
-                        if (word !== "") {
-                            refObj[word] = [ID];
-                        }
-                    } else {
-                        refObj[word].push(ID);
-                    }
-                }
-            }
+        for await (const ingredient of list) {
+            await ingredient.save().then((val) => {
+                console.log("added: \x1b[32m" + val.name + "\x1b[0m");
+            }).catch((error) => {
+                throw error;
+            });
         }
-    }
 
-    const ordered = Object.keys(refObj).sort().reduce((obj, key) => {
-        obj[key] = refObj[key];
-        return obj;
-    }, {});
+        return true;
+    }).catch((error) => {
+        throw error;
+    });
 
-    console.log(ordered);
-}
-
-lineReader();
+    mongoose.disconnect();
+})();

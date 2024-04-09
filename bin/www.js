@@ -6,6 +6,8 @@ import app from '../app.js';
 import debugMiddleware from 'debug';
 const debug = debugMiddleware('express-template:server');
 import http from 'http';
+import path from 'path';
+global.appRoot = path.resolve(__dirname);
 
 /**
  * Normalize a port into a number, string, or false.
@@ -72,7 +74,7 @@ const onListening = () => {
   debug('Listening on ' + bind);
 }
 
-const port = normalizePort(process.env.EXPRESS_PORT || '3001');
+const port = normalizePort(process.env.EXPRESS_PORT || '3000');
 app.set('port', port);
 
 /**
@@ -86,5 +88,6 @@ var server = http.createServer(app);
  */
 
 server.listen(port);
+console.log("server listening on port " + port + '!')
 server.on('error', onError);
 server.on('listening', onListening);

@@ -1,14 +1,29 @@
 import fs from 'fs';
 import readline from 'readline';
-//import nutrient_names from './conversions/NutrientConversion.js';
-import nutrient_names from './conversions/NutrientConversion';
+import nutrient_names from './conversions/NutrientNameConversion.js';
+import nutrient_filter from './conversions/NutrientIDFilter.js';
+import path from 'path';
+const __dirname = path.resolve();
+
+//Important nutrient IDs for easy reference.
+//1079 - Fiber
+//1003 - Protein
+//1063 - Total Sugars
+//1050 - Carbohydrates
+//1005 - Carbohydrates
+//1085 - Total Fat
+//1258 - Total Saturated Fats
+//1257 - Total trans fats
+//1292 - Total Monosaturate Fats
+//2047 - Calories(Atwoods)
+//1253 - Cholesterol
 
 async function Nutrient() {
     //Initialize nutrient list from relevant excel file.
     const list = await nutrients();
 
     async function nutrients() {
-        const file = fs.createReadStream("./FoodCSV/foundation_nutrient.csv");
+        const file = fs.createReadStream(path.join(__dirname, "./search/FoodCSV/foundation_nutrient.csv"));
         let list = [];
 
         const reader = readline.createInterface({
@@ -39,19 +54,23 @@ async function Nutrient() {
         let min = 0;
         let max = list.length - 1;
 
-        while (min <= max) {
-            let mid = Math.floor((max + min) / 2);
+        return new Promise(function (resolve, reject) {
+            while (min <= max) {
+                let mid = Math.floor((max + min) / 2);
 
-            if (list[mid].fdc_id < ID) {
-                min = mid + 1;
-            } else if (list[mid].fdc_id > ID) {
-                max = mid - 1;
-            } else {
-                return resultSpread(ID, mid);;
+                if (list[mid].fdc_id < ID) {
+                    min = mid + 1;
+                } else if (list[mid].fdc_id > ID) {
+                    max = mid - 1;
+                } else {
+                    //console.log(list[mid].fdc_id, ID, mid, min, max);
+                    resolve(resultSpread(ID, mid));
+                    break;
+                }
             }
-        }
-
-        return false;
+    
+            reject(false);
+        });
     }
 
     function resultSpread(ID, index) {
@@ -71,7 +90,7 @@ async function Nutrient() {
             descending--;
         }
 
-        return resultList;
+        return nutrient_filter(resultList);
     }
 
     return {
@@ -81,11 +100,4 @@ async function Nutrient() {
 }
 
 const nutrients = await Nutrient();
-
-
-console.dir(await nutrients.searchByFDC(323294), {'maxArrayLength': null});
-
-//  console.log(await nutrients.searchByFDC(323294));
-//  export default Nutrient();
-const list = nutrients.nutrient_list;
 export default nutrients;
