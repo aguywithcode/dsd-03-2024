@@ -8,7 +8,8 @@
     "document": "jsdoc -r -c conf.json ./",
     "test controller": "mocha './test/controllerTests/*.test.js",
     "test model": "mocha './test/modelTests/*.test.js'",
-    "test": "mocha './test/**/*.test.js'"
+    "test": "mocha './test/**/*.test.js'",
+    "populate": "node ./search/populate.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

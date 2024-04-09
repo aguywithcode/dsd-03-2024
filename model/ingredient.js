@@ -27,17 +27,23 @@ const checkInt = function(fieldName) {
  */
 const IngredientSchema = new Schema({
     name: {type: String, required: true},
-
+    fdc_id: {type: String, required: true, unique: true},
     image_url: {type: String},
     //fridge_id: {type: Schema.Types.ObjectId, ref:"Fridge", required: true},
     
-    calories: {type: Number, required: true, validate: checkInt("calories")},
-    vitamin_A: {type: Number, required: true, validate: checkInt("vitamin_A")},
-    vitamin_B: {type: Number, required: true, validate: checkInt("vitamin_B")},
-    vitamin_C: {type: Number, required: true, validate: checkInt("vitamin_C")},
-    cholesterol: {type: Number, required: true, validate: checkInt("cholesterol")},
-    carbohydrates: {type: Number, required: true, validate: checkInt("carbohydrates")},
-    protein: {type: Number, required: true, validate: checkInt("protein")}
+    nutrients: {
+        calories: {type: Number, required: true, validate: checkInt("calories")},
+        // vitamin_A: {type: Number, required: true, validate: checkInt("vitamin_A")},
+        // vitamin_B: {type: Number, required: true, validate: checkInt("vitamin_B")},
+        // vitamin_C: {type: Number, required: true, validate: checkInt("vitamin_C")},
+        cholesterol: {type: Number, required: true, validate: checkInt("cholesterol")},
+        carbohydrates: {type: Number, required: true, validate: checkInt("carbohydrates")},
+        protein: {type: Number, required: true, validate: checkInt("protein")},
+        total_fat: {type: Number, required: true, validate: checkInt("total_fat")},
+        total_saturated_fats: {type: Number, required: true, validate: checkInt("total_saturated_fat")},
+        total_trans_fats: {type: Number, required: true, validate: checkInt("total_trans_fats")},
+        total_monosaturated_fats: {type: Number, required: true, validate: checkInt("total_mono_fats")}
+    }
 });
 
 export default mongoose.model("Ingredient", IngredientSchema);
