@@ -8,6 +8,8 @@ import indexRouter from './routes/index.js';
 import usersRouter from './routes/users.js';
 import googleRouter from './routes/oauth/google.js';
 import ingredientsRouter from "./routes/ingredient/ingredients.js"
+import loginRouter from './routes/login.js';
+import registerRouter from './routes/register.js';
 import {fileURLToPath} from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -32,5 +34,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/ingredient', ingredientsRouter);
 app.use('/auth/google', googleRouter);
+app.use('/login', loginRouter);
+app.use('/register', registerRouter);
 
 export default app;
