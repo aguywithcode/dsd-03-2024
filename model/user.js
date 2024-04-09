@@ -23,4 +23,4 @@ const UserSchema = new Schema({
     meal_plan: [{type: Schema.Types.ObjectId, ref: "Meal"}]
 });
 
-export default mongoose.model("User", UserSchema);
+export default mongoose.model("User", UserSchema); 
